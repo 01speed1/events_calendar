@@ -1,6 +1,6 @@
 #!/bin/bash
 npm i
-
-NODE_ENV='test' nodemon app.js
-sudo docker-compose up -d
-
+trap 'kill 0' EXIT
+NODE_ENV='test' nodemon app.js &
+sudo docker-compose up
+wait

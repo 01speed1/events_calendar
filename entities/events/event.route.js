@@ -1,22 +1,28 @@
 const express = require("express");
-const router = express.Router()
+const eventsRouter = express.Router();
+const eventRouter = express.Router();
 
-const {  } = require("./event.service")
+const {
+  createEvent,
+  getAllEvents,
+  removeEvent,
+  updateEvent,
+} = require("./event.service");
 
-router.get("/", async ({}, response) => {
-  response.json()
-})
+eventsRouter
+  .route("/")
+  .get(async ({}, response) => {
+    response.json(await getAllEvents());
+  })
+  .post(async ({ body }, response) => {
+    response.json(await createEvent(body));
+  })
+  .put(async ({ body }, response) => {
+    response.json(await updateEvent(body));
+  });
 
-router.post("/", async ({ body }, response) => {
-  response.json()
-})
+eventRouter.route("/:id").delete(async ({ params }, response) => {
+  response.json(await removeEvent(params));
+});
 
-router.put("/", async ({ body }, response) => {
-  response.json()
-})
-
-router.delete("/", async ({ body }, response) => {
-  response.json()
-})
-
-module.exports = router
+module.exports = {eventsRouter, eventRouter};

@@ -17,6 +17,6 @@ require("./routes")(app);
 const port = process.env.NODE_PORT || 8080
 
 app.listen(port, () =>{
-  console.log('server start in ', process.env.NODE_ENV)
-  console.log(`Socket Server running on port ${port}`)}
+  console.log('server start in', process.env.NODE_ENV)
+  console.log(`Serverrunning on port ${port}`)}
 );
