@@ -6,4 +6,10 @@ var CategorySchema = Schema({
   createdAt: { type: Date, default: Date.now() }
 });
 
-module.exports = mongoose.model("Category", CategorySchema);
+const Category = mongoose.model("Category", CategorySchema);
+
+Category.findOne({name: 'Parties'}, async(err, doc) => {
+  if (!doc) await Category.create({name: 'Parties'})
+})
+
+module.exports = Category

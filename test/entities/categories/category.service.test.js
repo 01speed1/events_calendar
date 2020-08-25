@@ -14,7 +14,7 @@ describe("#getAllCategories", () => {
 
     expect(response).toHaveProperty('categories')
     expect(response.categories).toEqual(expect.any(Array))
-    expect(response.categories).toHaveLength(3)
+    expect(response.categories).toHaveLength(4)
   })
 })
 
