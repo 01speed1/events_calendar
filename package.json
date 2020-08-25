@@ -4,9 +4,11 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "build": "sh bash/build_to_docs.sh",
     "test": "jest test/ --watch --runInBand --detectOpenHandles",
     "mode:test": "sh bash/start_test_mode.sh",
-    "mode:dev": "sh bash/start_dev_mode.sh"
+    "mode:dev:back": "sh bash/start_dev_mode.sh",
+    "mode:dev:front": "sh bash/start_front_dev_mode.sh"
   },
   "repository": {
     "type": "git",
@@ -20,9 +22,8 @@
   },
   "homepage": "https://github.com/01speed1/events_calendar#readme",
   "devDependencies": {
-    "@shelf/jest-mongodb": "^1.2.2",
     "axios": "^0.20.0",
-    "jest": "^26.4.2",
+    "jest": "24.9.0",
     "nodemon": "^2.0.4"
   },
   "dependencies": {

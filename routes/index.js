@@ -11,8 +11,6 @@ module.exports = (app) => {
   app.use(endpointStringBuilder('events'), eventsRouter)
   app.use(endpointStringBuilder('event'), eventRouter)
 
-  console.log(endpointStringBuilder('event'))
-
   app.use(endpointStringBuilder(), baseRouter)
 
   app.get("*", (request, response) => response.status(404).json({message: "page not found"}) )

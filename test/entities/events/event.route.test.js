@@ -10,6 +10,24 @@ const basePath = `http://localhost:${port}/api`;
 const eventsPath = `${basePath}/events`;
 const eventPath = `${basePath}/event`;
 
+describe("GET@/event", () => {
+  it("should return the found event", async () => {
+    const categoryOne = await Category.create({ name: "C1" });
+
+    const eventOne = await Event.create({
+      date: new Date(),
+      name: "A super event",
+      categoryID: categoryOne._id,
+    });
+
+    const response = await axios.get(`${eventPath}/${eventOne._id}`);
+
+    expect(response.status).toBe(200);
+    expect(response.data.event).toHaveProperty("name", eventOne.name);
+    expect(response.data.event).toHaveProperty("categoryID", categoryOne._id.toString());
+  });
+});
+
 describe("GET@/events", () => {
   it("should return a message with status 200 and all events", async () => {
     const categoryOne = await Category.create({ name: "C1" });
@@ -94,7 +112,7 @@ describe("PUT@/events", () => {
   });
 });
 
-describe("DELETE@/events", () => {
+describe("DELETE@/event", () => {
   it("should remove the event", async () => {
     const categoryOne = await Category.create({ name: "Party" });
 
@@ -103,8 +121,6 @@ describe("DELETE@/events", () => {
       date: new Date(2020, 7, 20, 17, 30),
       categoryID: categoryOne._id,
     });
-
-    console.log(`${eventPath}/${eventOne._id}`)
 
     const response = await axios.delete(`${eventPath}/${eventOne._id}`);
 

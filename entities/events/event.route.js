@@ -7,6 +7,7 @@ const {
   getAllEvents,
   removeEvent,
   updateEvent,
+  getOneEvent
 } = require("./event.service");
 
 eventsRouter
@@ -21,8 +22,12 @@ eventsRouter
     response.json(await updateEvent(body));
   });
 
-eventRouter.route("/:id").delete(async ({ params }, response) => {
-  response.json(await removeEvent(params));
-});
+eventRouter.route("/:id")
+  .get(async ({ params }, response) => {
+    response.json(await getOneEvent(params));
+  })
+  .delete(async ({ params }, response) => {
+    response.json(await removeEvent(params));
+  });
 
 module.exports = {eventsRouter, eventRouter};
